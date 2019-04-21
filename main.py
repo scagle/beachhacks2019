@@ -1,5 +1,5 @@
 import mraa
-
+print(mraa.getVersion())
 count = 0
 while (count < 100):  
     try:

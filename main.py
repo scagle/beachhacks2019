@@ -6,16 +6,12 @@ print(mraa.getVersion())
 print("Raw adc bits: " + str(mraa.adcRawBits()))
 print("Support adc bits: " + str(mraa.adcSupportedBits()))
 count = 0
-while (count < 255):  
+while (count < 100):  
     try:
-        print("Reading GPIO" + str(count))
-        pin = mraa.Gpio(count) #Get GPIO Number
-        print("Tryna Reading GPIO" + str(count))
-        pin.dir(mraa.DIR_IN);
-   
         #There is no adcs on this dragonboard. wtf!! even from 0 to 100
-        port = mraa.Aio(count);
         print("Reading ADC" + str(count))
+        port = mraa.Aio(count);
+        print("Trying to read ADC" + str(count))
         port.dir(mraa.DIR_IN);
         a = port.read();
         
@@ -27,7 +23,7 @@ while (count < 255):
             pass         #YOU MIGHT WANNA CONSIDER REFILL THE MEDICINE
         elif (a/255 * 100  <10) :
             pass  #TIME TO GO GET MEDICATION
-        print("Got a ADC" + str(count))
+        print("Got a ADC" + str(count) + " of " + str(a))
     except:
         print("Are you sure you have an ADC" + str(count))
     count = count + 1

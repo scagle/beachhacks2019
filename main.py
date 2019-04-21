@@ -3,6 +3,8 @@ import mraa
 mraa.init()
 print(mraa.getPinCount()) 
 print(mraa.getVersion())
+print("Raw adc" + str(mraa.adcRawBits()))
+print("Support adc" + str(mraa.adcSupportedBits()))
 count = 0
 while (count < 100):  
     try:

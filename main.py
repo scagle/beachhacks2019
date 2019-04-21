@@ -6,10 +6,10 @@ print(mraa.getVersion())
 print("Raw adc bits: " + str(mraa.adcRawBits()))
 print("Support adc bits: " + str(mraa.adcSupportedBits()))
 count = 0
-while (count < 100):  
+while (count < 255):  
     try:
         print("Reading GPIO" + str(count))
-        pin = mraa.Gpio(0) #Get GPIO Number
+        pin = mraa.Gpio(count) #Get GPIO Number
         print("Tryna Reading GPIO" + str(count))
         pin.dir(mraa.DIR_IN);
    

@@ -1,3 +1,4 @@
+import mraa
 port = mraa.Aio(0);
 a = port.read();
 

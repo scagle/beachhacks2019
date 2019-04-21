@@ -12,9 +12,9 @@ while (count < 100):
         pin.dir(mraa.DIR_IN);
    
         #There is no adcs on this dragonboard. wtf!! even from 0 to 100
-        #port = mraa.Aio(count);
-        #print("Reading ADC" + str(count))
-        #port.dir(mraa.DIR_IN);
+        port = mraa.Aio(count);
+        print("Reading ADC" + str(count))
+        port.dir(mraa.DIR_IN);
         a = port.read();
         
         if (a/255 * 100 > 90) :

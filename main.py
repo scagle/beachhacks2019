@@ -1,14 +1,14 @@
-from pdb import set_trace # for debugging
-import mraa               # for GPIO
+port = mraa.Aio(0);
+a = port.read();
 
-print(mraa.getVersion())
-
-try:
-    x = mraa.Aio(0)
-    print(x.read())
-    print("%.f" % x.readFloat())
-except:
-    print("Couldn't find ADC!")
-
-# ir1 = mraa.Gpio(28)       # Enable GPIO28
-# ir1.dir(mraa.DIR_IN)      # Set GPIO28 as Input
+if (a/255 > 90) {
+     #BOTTLE IF FULL
+}
+elif (a/255 < 50) {
+    #BOTTLE IS HALF FULL
+}elif (a/255 <25) {
+        #YOU MIGHT WANNA CONSIDER REFILL THE MEDICINE
+}
+else (a/255 <10) {
+        #TIME TO GO GET MEDICATION
+}

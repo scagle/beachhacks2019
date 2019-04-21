@@ -17,5 +17,5 @@ while (count < 100):
         print("Got a ADC" + count)
         count = count + 1
     except:
-        print("Are you sure you have an ADC?")
+        print("Are you sure you have an ADC" + count)
         pass

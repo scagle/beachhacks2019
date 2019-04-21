@@ -3,16 +3,18 @@ import mraa
 count = 0
 while (count < 100):  
     try:
+        #There is no adcs on this dragonboard. wtf!! even from 0 to 100
         port = mraa.Aio(count);
+        port.dir(mraa.DIR_IN);
         a = port.read();
         
-        if (a/255 > 90) :
+        if (a/255 * 100 > 90) :
             pass      #BOTTLE IF FULL
-        elif (a/255 < 50) :
+        elif (a/255 * 100  < 50) :
             pass     #BOTTLE IS HALF FULL
-        elif (a/255 <25) :
+        elif (a/255 * 100  <25) :
             pass         #YOU MIGHT WANNA CONSIDER REFILL THE MEDICINE
-        elif (a/255 <10) :
+        elif (a/255 * 100  <10) :
             pass  #TIME TO GO GET MEDICATION
         print("Got a ADC" + str(count))
     except:

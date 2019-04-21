@@ -1,6 +1,7 @@
 import mraa
 
 mraa.init()
+print(mraa.getPinCount()) 
 print(mraa.getVersion())
 count = 0
 while (count < 100):  

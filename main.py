@@ -3,9 +3,11 @@ import mraa
 count = 0
 while (count < 100):  
     try:
-        pin = mraa.Gpio(count) #Get GPIO Number
-        pin.dir(mraa.DIR_IN);
         print("Reading GPIO" + str(count))
+        pin = mraa.Gpio(count) #Get GPIO Number
+        print("Tryna Reading GPIO" + str(count))
+        pin.dir(mraa.DIR_IN);
+   
         #There is no adcs on this dragonboard. wtf!! even from 0 to 100
         #port = mraa.Aio(count);
         #print("Reading ADC" + str(count))

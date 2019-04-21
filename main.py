@@ -1,29 +1,27 @@
-import mraa
+import mraa as m
 
-mraa.init()
-print(mraa.getPinCount()) 
-print(mraa.getVersion())
-print("Raw adc bits: " + str(mraa.adcRawBits()))
-print("Support adc bits: " + str(mraa.adcSupportedBits()))
-count = 0
-while (count < 100):  
-    try:
-        #There is no adcs on this dragonboard. wtf!! even from 0 to 100
-        print("Reading I2c" + str(count))
-        port = mraa.I2c(count)
-        print("Trying to read I2c" + str(count))
-        port.dir(mraa.DIR_IN);
-        a = port.read(count);
-        
-        if (a/255 * 100 > 90) :
-            pass      #BOTTLE IF FULL
-        elif (a/255 * 100  < 50) :
-            pass     #BOTTLE IS HALF FULL
-        elif (a/255 * 100  <25) :
-            pass         #YOU MIGHT WANNA CONSIDER REFILL THE MEDICINE
-        elif (a/255 * 100  <10) :
-            pass  #TIME TO GO GET MEDICATION
-        print("Got a I2c" + str(count) + " of " + str(a))
-    except:
-        print("Are you sure you have an I2c" + str(count))
-    count = count + 1
+# initialise I2C
+x = m.I2c(0)
+x.address(0x77)
+
+# initialise device
+if x.readReg(0xd0) != 0x55:
+    print("error")
+
+# we want to read temperature so write 0x2e into control reg
+x.writeReg(0xf4, 0x2e)
+
+# read a 16bit reg, obviously it's uncalibrated so mostly a useless value :)
+print(str(x.readWordReg(0xf6)))
+
+# and we can do the same thing with the read()/write() calls if we wished
+# thought I'd really not recommend it!
+
+x.write(bytearray(b'0xf40x2e'))
+
+x.writeByte(0xf6)
+d = x.read(2)
+
+# WARNING: python 3.2+ call
+print(str(d))
+print(int.from_bytes(d, byteorder='little'))

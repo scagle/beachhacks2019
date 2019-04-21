@@ -15,7 +15,6 @@ while (count < 100):
         elif (a/255 <10) :
             pass  #TIME TO GO GET MEDICATION
         print("Got a ADC" + count)
-        count = count + 1
     except:
         print("Are you sure you have an ADC" + count)
-        pass
+    count = count + 1
